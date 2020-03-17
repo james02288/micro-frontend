@@ -1,0 +1,23 @@
+{
+  "account": [
+    {
+      "id": 1,
+      "username": "james",
+      "password": "james",
+      "name": "James"
+    },
+    {
+      "id": 2,
+      "username": "allen",
+      "password": "allen",
+      "name": "Allen"
+    }
+  ],
+  "chat": [
+    {
+      "id": 1,
+      "user": [1, 2]
+    }
+  ],
+  "profile": { "name": "typicode" }
+}
