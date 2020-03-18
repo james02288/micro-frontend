@@ -1,38 +1,48 @@
 <template>
-  <div id="chat">
-    <div id="chatList">
+  <div
+    id="chat"
+    class="row"
+  >
+    <div
+      id="chatList"
+      class="col-md-3 border-dark border-right"
+    >
       <ol>
         <li v-for="(chatroom) in chatrooms">
           <a
             href="javascript:;"
-            v-on:click="selectRoom(chatroom.roomid)"
+            v-on:click="selectRoom(chatroom.roomid, chatroom.reciver_id)"
           >{{chatroom.reciver}}</a>
         </li>
       </ol>
     </div>
     <ChatRoom :roomid="currentRoom" />
-    {{chatrooms}}
+    <ChatInfo :reciver_id="currentUserId" />
   </div>
 
 </template>
 
 <script>
   import ChatRoom from "@/components/Chat/ChatRoom.vue";
+  import ChatInfo from "@/components/Chat/ChatInfo.vue";
   import axios from "axios";
   export default {
     name: "home",
     data() {
       return {
         chatrooms: [],
-        currentRoom: ""
+        currentRoom: "",
+        currentUserId: ""
       };
     },
     components: {
-      ChatRoom
+      ChatRoom,
+      ChatInfo
     },
     methods: {
-      selectRoom(roomid) {
+      selectRoom(roomid, userId) {
         this.currentRoom = String(roomid);
+        this.currentUserId = String(userId);
       }
     },
     mounted() {
@@ -62,6 +72,7 @@
             .then(() => {
               if (this.chatrooms.length != 0) {
                 this.currentRoom = String(this.chatrooms[0].roomid);
+                this.currentUserId = String(this.chatrooms[0].reciver_id);
               }
             });
         });

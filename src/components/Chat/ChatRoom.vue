@@ -1,10 +1,8 @@
 <template>
-  <div id="chatroom">
-    <a href="javascript:;">{{roomid}}</a>
-    <input
-      type="text"
-      v-model="roomid"
-    >
+  <div
+    id="chatroom"
+    class="col-md-6"
+  >
     <div class="container">
       <!-- 區塊：name area -->
       <div class="name">
@@ -34,18 +32,19 @@
               <div class="messageBox">
                 <div class="messageBox__content text-left">
                   <!-- 註解：Vue使用雙花括號{{}}來顯示script中data:的資料 -->
-                  <div class="messageBox__name">{{item.userName}}</div>
-                  <div class="messageBox__text bg-light">{{item.message}}</div>
-                  <div class="messageBox__time text-muted">{{item.timeStamp}}</div>
+                  <div>{{item.userName}}</div>
+                  <div class="bg-secondary d-inline-block shadow-sm px-4 py-2 text-white rounded-lg">{{item.message}}</div>
+                  <div class="text-muted">{{item.timeStamp}}</div>
                 </div>
               </div>
             </template>
             <!-- 區塊：self -->
             <template v-if="item.userName == userName">
-              <div class="messageBox messageBox--self text-right">
-                <div class="messageBox__content messageBox__content--self">
-                  <div class="messageBox__text messageBox__text--self bg-success">{{item.message}}</div>
-                  <div class="messageBox__time messageBox__time--self text-muted">{{item.timeStamp}}</div>
+              <div class="text-right">
+                <div>
+                  <div>我</div>
+                  <div class="bg-success d-inline-block shadow-sm px-4 py-2 text-white rounded-lg">{{item.message}}</div>
+                  <div class="text-muted">{{item.timeStamp}}</div>
                 </div>
               </div>
             </template>
@@ -69,11 +68,6 @@
           </div>
         </div>
       </div>
-      <a
-        href="javascript:;"
-        v-on:click="stop"
-      >stop</a>
-      {{messages}}
       <!-- 區塊：modal -->
       <div
         id="js-modal"
@@ -114,6 +108,9 @@
     computed: {
       userName() {
         return this.$store.state.username;
+      },
+      is_login() {
+        return this.$store.state.is_login;
       }
     },
     props: {
@@ -121,10 +118,6 @@
     },
     // 這個頁面的functions
     methods: {
-      stop() {
-        msgRef = null;
-        this.messages = [];
-      },
       /** 彈出設定視窗 */
       setName() {
         document.querySelector("#js-modal").style.display = "block";
@@ -172,10 +165,6 @@
         e.preventDefault();
       }
     },
-    // mounted是vue的生命週期之一，代表模板已編譯完成，已經取值準備渲染HTML畫面了
-    mounted() {
-      console.log(1);
-    },
     // update是vue的生命週期之一，接再munted後方代表HTML元件渲染完成後
     updated() {
       // 當畫面渲染完成，把聊天視窗滾到最底部(讀取最新消息)
@@ -184,10 +173,8 @@
     },
     watch: {
       roomid() {
-        console.log(123);
         msgRef = null;
         this.messages = [];
-        console.log("currentRoom" + String(this.roomid));
         msgRef = firebase.database().ref("/messages-" + this.roomid + "/");
         const vm = this;
         msgRef.on("value", function(snapshot) {
@@ -195,6 +182,17 @@
           vm.messages = val;
         });
       }
+    },
+    mounted() {
+      if (!this.is_login) {
+        this.$router.push("/");
+      }
+      msgRef = firebase.database().ref("/messages-" + this.roomid + "/");
+      const vm = this;
+      msgRef.on("value", function(snapshot) {
+        const val = snapshot.val();
+        vm.messages = val;
+      });
     }
   };
 </script>
