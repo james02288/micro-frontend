@@ -28,7 +28,7 @@ export default new Vuex.Store({
     LOGIN: (context, { target }) => {
       return axios
         .get(
-          "http://localhost:3000/account?username=" +
+          "http://127.0.0.1:3000/account?username=" +
             target.username +
             "&password=" +
             target.password

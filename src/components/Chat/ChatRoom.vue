@@ -69,6 +69,11 @@
           </div>
         </div>
       </div>
+      <a
+        href="javascript:;"
+        v-on:click="stop"
+      >stop</a>
+      {{messages}}
       <!-- 區塊：modal -->
       <div
         id="js-modal"
@@ -116,6 +121,10 @@
     },
     // 這個頁面的functions
     methods: {
+      stop() {
+        msgRef = null;
+        this.messages = [];
+      },
       /** 彈出設定視窗 */
       setName() {
         document.querySelector("#js-modal").style.display = "block";
@@ -166,18 +175,26 @@
     // mounted是vue的生命週期之一，代表模板已編譯完成，已經取值準備渲染HTML畫面了
     mounted() {
       console.log(1);
-      msgRef = firebase.database().ref("/messages-" + this.roomid + "/");
-      const vm = this;
-      msgRef.on("value", function(snapshot) {
-        const val = snapshot.val();
-        vm.messages = val;
-      });
     },
     // update是vue的生命週期之一，接再munted後方代表HTML元件渲染完成後
     updated() {
       // 當畫面渲染完成，把聊天視窗滾到最底部(讀取最新消息)
       const roomBody = document.querySelector("#js-roomBody");
       roomBody.scrollTop = roomBody.scrollHeight;
+    },
+    watch: {
+      roomid() {
+        console.log(123);
+        msgRef = null;
+        this.messages = [];
+        console.log("currentRoom" + String(this.roomid));
+        msgRef = firebase.database().ref("/messages-" + this.roomid + "/");
+        const vm = this;
+        msgRef.on("value", function(snapshot) {
+          const val = snapshot.val();
+          vm.messages = val;
+        });
+      }
     }
   };
 </script>

@@ -37,7 +37,7 @@
     },
     mounted() {
       axios
-        .get("http://localhost:3000/chat?user1=" + this.$store.state.user_id)
+        .get("http://127.0.0.1:3000/chat?user1=" + this.$store.state.user_id)
         .then(res => {
           res.data.forEach(chatroom => {
             this.chatrooms.push({
@@ -49,7 +49,7 @@
         })
         .then(() => {
           axios
-            .get("http://localhost:3000/chat?user2=" + this.$store.state.user_id)
+            .get("http://127.0.0.1:3000/chat?user2=" + this.$store.state.user_id)
             .then(res => {
               res.data.forEach(chatroom => {
                 this.chatrooms.push({
