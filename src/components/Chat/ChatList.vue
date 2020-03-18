@@ -1,3 +1,5 @@
 <template>
-  <div id="chatlist"></div>
+  <div id="chatlist">
+    chatlist
+  </div>
 </template>
