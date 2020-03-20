@@ -1,25 +1,16 @@
+<style>
+  textarea {
+    resize: none;
+  }
+</style>
 <template>
   <div
     id="chatroom"
-    class="col-md-6"
+    class="col-md-6 overflow-auto"
+    style="padding-top: 73px;height:100vh; padding-bottom: 40px;"
   >
-    <div class="container">
-      <!-- 區塊：name area -->
-      <div class="name">
-        <h3>Name：{{ userName }}</h3>
-
-      </div>
-      <!-- 區塊：chat room -->
-      <div class="chatRoom">
-        <!-- 區塊：head -->
-        <div class="roomHead">
-          <div class="roomHead__topButtons">
-            <div class="roomHead__button close"></div>
-            <div class="roomHead__button minimize"></div>
-            <div class="roomHead__button zoom"></div>
-          </div>
-          <div class="roomHead__title">聊天室</div>
-        </div>
+    <div>
+      <div>
         <!-- 區塊：body -->
         <div
           id="js-roomBody"
@@ -29,23 +20,19 @@
           <template v-for="item in messages">
             <!-- other people -->
             <template v-if="item.userName != userName">
-              <div class="messageBox">
-                <div class="messageBox__content text-left">
-                  <!-- 註解：Vue使用雙花括號{{}}來顯示script中data:的資料 -->
-                  <div>{{item.userName}}</div>
-                  <div class="bg-secondary d-inline-block shadow-sm px-4 py-2 text-white rounded-lg">{{item.message}}</div>
-                  <div class="text-muted">{{item.timeStamp}}</div>
-                </div>
+              <div class="text-left">
+                <!-- 註解：Vue使用雙花括號{{}}來顯示script中data:的資料 -->
+                <div>{{item.userName}}</div>
+                <div class="border border-dark d-inline-block shadow-sm px-4 py-2 rounded-lg">{{item.message}}</div>
+                <div class="text-muted">{{item.timeStamp}}</div>
               </div>
             </template>
             <!-- 區塊：self -->
             <template v-if="item.userName == userName">
               <div class="text-right">
-                <div>
-                  <div>我</div>
-                  <div class="bg-success d-inline-block shadow-sm px-4 py-2 text-white rounded-lg">{{item.message}}</div>
-                  <div class="text-muted">{{item.timeStamp}}</div>
-                </div>
+                <div>我</div>
+                <div class="bg-dark d-inline-block shadow-sm px-4 py-2 text-white rounded-lg">{{item.message}}</div>
+                <div class="text-muted">{{item.timeStamp}}</div>
               </div>
             </template>
           </template>
@@ -53,19 +40,28 @@
         <!-- 區塊：bottom -->
         <!-- 註解：使用:class來寫class是否顯示的判斷式{ class: 判斷式 } -->
         <div
-          class="roomBottom"
-          :class="{ disable: !userName }"
+          class="position-fixed col-md-6 mx-auto px-3"
+          style="bottom:5px; left:0; right: 0; height: 35px;"
         >
-          <div class="roomBottom__tools"></div>
-          <div class="roomBottom__input">
-            <!-- 若要再帶入原生js的event(e)到function中，必須使用$event當參數傳入 -->
-            <textarea
-              id="js-message"
-              class="roomBottom__input__textarea"
-              :class="{ disable: !userName }"
-              @keydown.enter="sendMessage($event)"
-            ></textarea>
-          </div>
+          <!-- 若要再帶入原生js的event(e)到function中，必須使用$event當參數傳入 -->
+          <textarea
+            id="js-message"
+            class="rounded-pill col-10"
+            style="height: 35px;"
+            @keydown.enter="sendMessage($event)"
+          ></textarea>
+          <a
+            href="javascript:;"
+            class="ml-2"
+            v-on:click="sendMessage($event)"
+          >
+            <i
+              class="material-icons"
+              style="font-size: 35px"
+            >
+              send
+            </i>
+          </a>
         </div>
       </div>
       <!-- 區塊：modal -->
@@ -78,15 +74,7 @@
           <header class="modal__header">
             <h2 class="view-title">輸入名稱</h2>
           </header>
-          <div class="modal__body">
-            <!-- 註解：使用@keydown.enter來偵測keydown enter，觸發時執行method中的saveName() -->
 
-            <div
-              class="button"
-              @click="saveName()"
-            >設定</div>
-          </div>
-          <footer class="modal__footer"></footer>
         </div>
       </div>
     </div>
@@ -168,7 +156,7 @@
     // update是vue的生命週期之一，接再munted後方代表HTML元件渲染完成後
     updated() {
       // 當畫面渲染完成，把聊天視窗滾到最底部(讀取最新消息)
-      const roomBody = document.querySelector("#js-roomBody");
+      const roomBody = document.querySelector("#chatroom");
       roomBody.scrollTop = roomBody.scrollHeight;
     },
     watch: {

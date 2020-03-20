@@ -7,7 +7,7 @@
       >
         <div class="text-center w-50 py-5 px-4 rounded border-dark border">
           <h4 v-if="!is_login">請登入</h4>
-          <h4 v-if="is_login">哈囉! {{name}}</h4>
+          <h4 v-if="is_login">哈囉! {{ name }}</h4>
           <h4 v-if="is_login">您已登入嘍!</h4>
           <div
             v-if="is_error"
@@ -16,7 +16,8 @@
           >
             <i class="material-icons align-bottom">
               error_outline
-            </i> 帳號或密碼錯嘍
+            </i>
+            帳號或密碼錯嘍
           </div>
           <div
             class="form-group text-left"

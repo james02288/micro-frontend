@@ -41,5 +41,17 @@
       "user2": 3,
       "user2-name": "Mary"
     }
+  ],
+  "online": [
+    {
+      "user_id": 1,
+      "seed": "hello",
+      "id": 1
+    },
+    {
+      "user_id": 2,
+      "seed": "hello",
+      "id": 2
+    }
   ]
 }
