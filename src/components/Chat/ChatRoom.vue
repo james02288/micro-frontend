@@ -52,7 +52,7 @@
           ></textarea>
           <a
             href="javascript:;"
-            class="ml-2"
+            class="ml-2 selflink"
             v-on:click="sendMessage($event)"
           >
             <i

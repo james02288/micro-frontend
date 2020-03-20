@@ -8,7 +8,9 @@ export default new Vuex.Store({
   state: {
     is_login: false,
     username: null,
-    user_id: null
+    user_id: null,
+    call: false,
+    is_call: false
   },
   mutations: {
     setLogin(state, data) {
@@ -22,6 +24,12 @@ export default new Vuex.Store({
       state.is_login = false;
       state.username = null;
       state.user_id = null;
+    },
+    callChange(state) {
+      state.call = !state.call;
+    },
+    isCallChange(state) {
+      state.is_call = !state.is_call;
     }
   },
   actions: {

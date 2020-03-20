@@ -37,6 +37,13 @@
             if (res.data.length == 0) {
               alert("對方不在線上;");
             } else {
+              // this.$store.commit("callChange");
+              console.log("connect to " + res.data[0].seed);
+              conn = peer.connect(res.data[0].seed);
+              console.log("connected");
+              conn.on("data", function(data) {
+                console.log("Receivedd " + data);
+              });
             }
           });
       }
