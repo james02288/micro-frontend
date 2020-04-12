@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Chat from "./views/Chat.vue";
 import About from "./views/About.vue";
 import Index from "./views/Index.vue";
+import Meeting_schedule from "./views/Meeting_schedule.vue";
 
 Vue.use(Router);
 
@@ -12,22 +13,27 @@ export default new Router({
     {
       path: "/",
       name: "index",
-      component: Index
+      component: Index,
     },
     {
       path: "/Home",
       name: "home",
-      component: Home
+      component: Home,
     },
     {
       path: "/Chat",
       name: "chat",
-      component: Chat
+      component: Chat,
     },
     {
       path: "/about",
       name: "about",
-      component: About
-    }
-  ]
+      component: About,
+    },
+    {
+      path: "/Meeting_schedule",
+      name: "schedule",
+      component: Meeting_schedule,
+    },
+  ],
 });

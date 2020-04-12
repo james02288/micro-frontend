@@ -139,15 +139,15 @@
                 <div class="rounded bg-dark text-white mx-2 py-3 px-3">
                   <div class="border-bottom border-white text-white px-2 py-2 py-2">
                     <router-link
-                      to="/Home"
+                      to="/Meeting_schedule"
                       tag="a"
                       class="selflink text-white"
                     >
                       <h4>
                         <span class="material-icons align-bottom">
-                          person
+                          event_note
                         </span>
-                        我的帳戶
+                        會議排程
                       </h4>
                     </router-link>
                   </div>
