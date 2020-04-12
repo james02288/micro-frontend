@@ -47,6 +47,9 @@
 </template>
 
 <style>
+  body {
+    overflow-x: hidden;
+  }
   a.selflink:link {
     color: rgb(82, 82, 82);
     background-color: transparent;

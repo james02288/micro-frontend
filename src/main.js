@@ -6,11 +6,9 @@ import vueaxios from "vue-axios";
 import axios from "axios";
 
 Vue.config.productionTip = false;
-// Vue.use(axios, vueaxios);
+Vue.use(vueaxios, axios);
 new Vue({
   router,
   store,
-  axios,
-  vueaxios,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

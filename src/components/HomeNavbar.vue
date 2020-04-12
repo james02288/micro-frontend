@@ -35,9 +35,13 @@
       <div class="col-3 text-center align-middle py-2">
         <div class="row">
           <div class="col-6 text-right py-2">
-            <button class="btn btn-outline-dark btn-lg">
+            <router-link
+              to="/Home"
+              tag="a"
+              class="btn btn-outline-dark btn-lg"
+            >
               註冊/登入
-            </button>
+            </router-link>
           </div>
           <div class="col-3">
             <span
@@ -50,14 +54,20 @@
             我的追蹤
           </div>
           <div class="col-3">
-            <span
-              class="material-icons"
-              style="font-size:45px;"
+            <router-link
+              to="/Home"
+              tag="a"
+              class="selflink"
             >
-              person
-            </span>
-            <br>
-            我的帳戶
+              <span
+                class="material-icons"
+                style="font-size:45px;"
+              >
+                person
+              </span>
+              <br>
+              我的帳戶
+            </router-link>
           </div>
         </div>
       </div>

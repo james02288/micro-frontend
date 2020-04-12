@@ -24,33 +24,21 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
-            src="../assets/index/1.png"
+            src="https://i.imgur.com/GRO0m7r.png"
             class="d-block w-100"
           >
-          <div class="carousel-caption d-none d-md-block">
-            <h5>First slide label</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </div>
         </div>
         <div class="carousel-item">
           <img
-            src="../assets/index/1.png"
+            src="https://i.imgur.com/GRO0m7r.png"
             class="d-block w-100"
           >
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Second slide label</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
         </div>
         <div class="carousel-item">
           <img
-            src="../assets/index/1.png"
+            src="https://i.imgur.com/GRO0m7r.png"
             class="d-block w-100"
           >
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Third slide label</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-          </div>
         </div>
       </div>
       <a
@@ -80,22 +68,52 @@
     </div>
     <div class="row text-center pt-3 pb-2 border-dark border-bottom">
       <div class="col-2">
-        <h4>主題小舖</h4>
+        <a
+          href="javascript:;"
+          class="selflink"
+        >
+          <h4>主題小舖</h4>
+        </a>
       </div>
       <div class="col-2">
-        <h4>所有分類</h4>
+        <a
+          href="javascript:;"
+          class="selflink"
+        >
+          <h4>所有分類</h4>
+        </a>
       </div>
       <div class="col-2">
-        <h4>居家生活</h4>
+        <a
+          href="javascript:;"
+          class="selflink"
+        >
+          <h4>居家生活</h4>
+        </a>
       </div>
       <div class="col-2">
-        <h4>繪畫藝術</h4>
+        <a
+          href="javascript:;"
+          class="selflink"
+        >
+          <h4>繪畫藝術</h4>
+        </a>
       </div>
       <div class="col-2">
-        <h4>時尚穿搭</h4>
+        <a
+          href="javascript:;"
+          class="selflink"
+        >
+          <h4>時尚穿搭</h4>
+        </a>
       </div>
       <div class="col-2">
-        <h4>手作飾品</h4>
+        <a
+          href="javascript:;"
+          class="selflink"
+        >
+          <h4>手作飾品</h4>
+        </a>
       </div>
     </div>
     <div class="row px-5 mt-4">
@@ -202,9 +220,101 @@
       </div>
       <div class="col-10">
         <h3>編輯精選</h3>
+        <div class="row">
+          <div
+            class="col-xl-2 col-lg-4 col-md-6"
+            v-for="(item, index) in featureds"
+            v-bind:key="index"
+          >
+            <a
+              href="javascript:;"
+              class="selflink"
+            >
+              <div class="card item">
+                <img
+                  v-bind:src="item.image"
+                  class="card-img-top"
+                >
+                <div class="card-body">
+                  <h5 class="card-title"><b>{{item.title}}</b></h5>
+                  <p class="card-text">設計師 {{item.auther}}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
         <hr>
+        <div class="row">
+          <div class="col-4">
+            <h3>快閃活動</h3>
+            <a
+              href="javascript:;"
+              class="selflink"
+            >
+              <div class="card item">
+                <img
+                  src="https://i.imgur.com/YhB1DKr.jpg"
+                  class="card-img-top"
+                >
+                <div class="card-body">
+                  <h5 class="card-title"><b>【快閃活動】</b></h5>
+                  <p class="card-text">查看詳情</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-8">
+            <h3>今日新星</h3>
+            <div class="row">
+              <div
+                class="col-3 mb-3"
+                v-for="(item, index) in today"
+                v-bind:key="index"
+              >
+                <a
+                  href="javascript:;"
+                  class="selflink"
+                >
+                  <div class="card item">
+                    <img
+                      v-bind:src="item.image"
+                      class="card-img-top"
+                    >
+                    <div class="card-body">
+                      <h5 class="card-title"><b>{{item.title}}</b></h5>
+                      <p class="card-text">設計師 {{item.auther}}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
         <hr>
         <h3>聖誕節慶</h3>
+        <div class="row">
+          <div
+            class="col-xl-2 col-lg-4 col-md-6 mb-3"
+            v-for="(item, index) in santa"
+            v-bind:key="index"
+          >
+            <a
+              href="javascript:;"
+              class="selflink"
+            >
+              <div class="card item">
+                <img
+                  v-bind:src="item.image"
+                  class="card-img-top"
+                >
+                <div class="card-body">
+                  <h5 class="card-title"><b>{{item.title}}</b></h5>
+                  <p class="card-text">設計師 {{item.auther}}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -213,10 +323,37 @@
 
 <script>
   import Navbar from "@/components/HomeNavbar.vue";
-
   export default {
     components: {
       Navbar
+    },
+    data() {
+      return {
+        featureds: [],
+        today: [],
+        santa: []
+      };
+    },
+    mounted() {
+      this.$http.get("http://localhost:3000/featured").then(res => {
+        this.featureds = res.data;
+      });
+      this.$http.get("http://localhost:3000/today").then(res => {
+        this.today = res.data;
+      });
+      this.$http.get("http://localhost:3000/santa").then(res => {
+        this.santa = res.data;
+      });
     }
   };
 </script>
+
+<style>
+  .item {
+    box-shadow: 0px 0px 5px #00000020;
+    transition: 0.3s;
+  }
+  .item:hover {
+    box-shadow: 0px 0px 10px #00000050;
+  }
+</style>

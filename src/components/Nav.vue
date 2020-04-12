@@ -1,9 +1,10 @@
 <template>
   <div id="nav">
     <nav class="navbar navbar-expand-sm navbar-light bg-white fixed-top border-bottom border-dark">
-      <a
+      <router-link
+        to="/"
+        tag="a"
         class="navbar-brand"
-        href="javascript:;"
       >
         <img
           src="../assets/logo.jpg"
@@ -13,7 +14,7 @@
           alt=""
         >
         Micro客製雲
-      </a>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -48,7 +49,7 @@
           </li>
           <li class="nav-item">
             <router-link
-              to="/"
+              to="/Home"
               tag="a"
               class="nav-link"
             >

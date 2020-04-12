@@ -1,60 +1,65 @@
 <template>
-  <div
-    id="chat"
-    class="row"
-    style="height: 100vh;"
-  >
+  <div>
+    <Nav></Nav>
     <div
-      id="chatList"
-      class="col-md-3 border-dark border-right d-none d-md-block px-0"
-      style="padding-top: 73px;"
+      id="chat"
+      class="row"
+      style="height: 100vh;"
     >
-      <ul class="list-group list-group-flush">
-        <a
-          v-for="chatroom in chatrooms"
-          :key="chatroom.roomid"
-          href="javascript:;"
-          class="selflink border-bottom border-dark"
-          v-on:click="selectRoom(chatroom.roomid, chatroom.reciver_id)"
-        >
-          <li
-            class="list-group-item text-center"
-            v-bind:class="{ 'bg-light': chatroom.reciver_id ==  currentUserId}"
+      <div
+        id="chatList"
+        class="col-md-3 border-dark border-right d-none d-md-block px-0"
+        style="padding-top: 73px;"
+      >
+        <ul class="list-group list-group-flush">
+          <a
+            v-for="chatroom in chatrooms"
+            :key="chatroom.roomid"
+            href="javascript:;"
+            class="selflink border-bottom border-dark"
+            v-on:click="selectRoom(chatroom.roomid, chatroom.reciver_id)"
           >
-            {{ chatroom.reciver }}
-          </li>
-        </a>
-      </ul>
-    </div>
-    <ChatRoom :roomid="currentRoom" />
-    <div
-      id="chatList"
-      class="col-md-3 border-dark border-right d-md-none"
-    >
-      <ul class="list-group list-group-flush">
-        <a
-          v-for="chatroom in chatrooms"
-          :key="chatroom.roomid"
-          href="javascript:;"
-          class="selflink border-bottom border-dark"
-          v-on:click="selectRoom(chatroom.roomid, chatroom.reciver_id)"
-        >
-          <li
-            class="list-group-item text-center"
-            v-bind:class="{ 'bg-light': chatroom.reciver_id ==  currentUserId}"
+            <li
+              class="list-group-item text-center"
+              v-bind:class="{ 'bg-light': chatroom.reciver_id ==  currentUserId}"
+            >
+              {{ chatroom.reciver }}
+            </li>
+          </a>
+        </ul>
+      </div>
+      <ChatRoom :roomid="currentRoom" />
+      <div
+        id="chatList"
+        class="col-md-3 border-dark border-right d-md-none"
+      >
+        <ul class="list-group list-group-flush">
+          <a
+            v-for="chatroom in chatrooms"
+            :key="chatroom.roomid"
+            href="javascript:;"
+            class="selflink border-bottom border-dark"
+            v-on:click="selectRoom(chatroom.roomid, chatroom.reciver_id)"
           >
-            {{ chatroom.reciver }}
-          </li>
-        </a>
-      </ul>
+            <li
+              class="list-group-item text-center"
+              v-bind:class="{ 'bg-light': chatroom.reciver_id ==  currentUserId}"
+            >
+              {{ chatroom.reciver }}
+            </li>
+          </a>
+        </ul>
+      </div>
+      <ChatInfo :reciver_id="currentUserId" />
     </div>
-    <ChatInfo :reciver_id="currentUserId" />
   </div>
 </template>
 
 <script>
   import ChatRoom from "@/components/Chat/ChatRoom.vue";
   import ChatInfo from "@/components/Chat/ChatInfo.vue";
+  import Nav from "@/components/Nav.vue";
+
   import axios from "axios";
   export default {
     name: "home",
@@ -67,7 +72,8 @@
     },
     components: {
       ChatRoom,
-      ChatInfo
+      ChatInfo,
+      Nav
     },
     methods: {
       selectRoom(roomid, userId) {
